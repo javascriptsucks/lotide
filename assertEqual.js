@@ -1,12 +1,18 @@
 // FUNCTION IMPLEMENTATION
 const assertEqual = function(actual,expected) {
-  if (typeof actual === typeof expected) {
-    if (actual === expected) console.log(`🌝🌝🌝Assertion Passed: ${actual} === ${expected}`);
-    else console.log(`🌚🌚🌚Assertion Failed: ${actual} !== ${expected}`);
-  } else {
+  if(typeof actual!==typeof expected) {
+
     console.log(`🌚🌚🌚Assertion Failed Different Data Type: ${actual} !== ${expected}`);
+    return
+  } else {
+
+    if(actual===expected) console.log(`🌝🌝🌝Assertion Passed: ${actual} === ${expected}`);
+
+    else console.log(`🌚🌚🌚Assertion Failed: ${actual} !== ${expected}`);
+
   }
 };
+
 
 // TEST CODE
 assertEqual("Lighthouse Labs", "Bootcamp");
