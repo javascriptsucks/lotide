@@ -1,28 +1,22 @@
 const assertArraysEqual = function(actual,expected) {
   if (typeof actual !== typeof expected) {
-
-    console.log(`🌚🌚🌚Assertion Failed Different Data Type: ${actual} !== ${expected}`);
-    return;
+    return false;
   } else {
+    if (actual === expected) return true;
     if (actual.length === expected.length && actual instanceof Array) {
       for (let i = 0; i < actual.length; i++) {
         if (actual[i] !== expected[i]) {
-          console.log(`🌚🌚🌚Assertion Failed: ${actual} !== ${expected}`);
-          return;
+          return false;
         }
       }
-      console.log(`🌝🌝🌝Assertion Passed: ${actual} === ${expected}`);
       return true;
-    } else if (actual === expected) {
-      console.log(`🌝🌝🌝Assertion Passed: ${actual} === ${expected}`);
-
     } else {
-      console.log(`🌚🌚🌚Assertion Failed: ${actual} !== ${expected}`);
+      return false;
     }
   }
 };
-assertArraysEqual([1, 2, 3], [1, 2, 3]); // => true
-assertArraysEqual([1, 2, 3], [3, 2, 1]); // => false
-
-assertArraysEqual(["1", "2", "3"], ["1", "2", "3"]); // => true
-assertArraysEqual(["1", "2", "3"], ["1", "2", 3]); // => false
+console.log(assertArraysEqual([1, 2, 3], [1, 2, 3])); // => true
+console.log(assertArraysEqual([1, 2, 3], [3, 2, 1])); // => false
+console.log(assertArraysEqual(undefined, undefined));
+console.log(assertArraysEqual(["1", "2", "3"], ["1", "2", "3"])); // => true
+console.log(assertArraysEqual(["1", "2", "3"], ["1", "2", 3])); // => false
