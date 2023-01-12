@@ -58,6 +58,7 @@ const assertObjectsEqual = function(actual,expected) {
     console.log(`🛑🛑🛑 Assertion Failed: ${inspect(actual)} !== ${inspect(expected)}`);
     return;
   }
+
   if (assertArraysEqual(actual,expected)) {
     //console.log(`wrong part ?${assertArraysEqual(1,2)}`);
     console.log(`✅✅✅ Assertion Passed: ${inspect(actual)} === ${inspect(expected)}`);
@@ -80,7 +81,6 @@ const assertObjectsEqual = function(actual,expected) {
     console.log(`🛑🛑🛑 Assertion Failed: ${inspect(actual)} !== ${inspect(expected)}`);
     return;
   }
-
 };
 
 const shirtObject = { color: "red", size: "medium" };
