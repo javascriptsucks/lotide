@@ -20,3 +20,8 @@ console.log(assertArraysEqual([1, 2, 3], [3, 2, 1])); // => false
 console.log(assertArraysEqual(undefined, undefined));
 console.log(assertArraysEqual(["1", "2", "3"], ["1", "2", "3"])); // => true
 console.log(assertArraysEqual(["1", "2", "3"], ["1", "2", 3])); // => false
+console.log(assertArraysEqual(undefined,undefined));
+console.log(assertArraysEqual(1,2));
+console.log(assertArraysEqual(null, null));
+console.log(assertArraysEqual(null, undefined));
+console.log(assertArraysEqual(NaN, null));
