@@ -14,13 +14,15 @@ const assertEqual = function(actual,expected) {
 
 const countLetters = (str) => {
   const letterObj = new Object();
-  const noSpcStr = str.split(' ').join('').toLowerCase();
-  for (let letter of noSpcStr) {
-    if (letterObj[letter]) {
-      letterObj[letter] += 1;
-    } else {
+
+  for (let letter of str) {
+    if (letter === ' ') {
+      continue;
+    }
+    if (!letterObj[letter]) {
       letterObj[letter] = 1;
     }
+    letterObj[letter] += 1;
   }
   return letterObj;
 };

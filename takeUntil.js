@@ -3,10 +3,11 @@ const takeUntil = function(array,callback) {
   // ...
   for (const ele of array) {
     if (callback(ele)) {
-      return arrReturn
-    } else {
-      arrReturn.push(ele);
+      return arrReturn;
     }
+
+    arrReturn.push(ele);
+
   }
   return arrReturn;
 };
