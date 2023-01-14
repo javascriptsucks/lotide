@@ -1,86 +1,73 @@
 
 // Returns true if both objects have identical keys with identical values.
 // Otherwise you get back a big fat false!
-const eqObjects = function(object1,object2) {
+const eqObjects = (object1, object2) => {
   const key1 = Object.keys(object1);
   const key2 = Object.keys(object2);
   if (key1.length !== key2.length) return false;
-
-  for (let i = 0; i < key1.length; i++) {
-    if (!key2.includes(key1[i])) {
-      return false;
-    } else if (object1[key1[i]] !== object2[key1[i]] && !assertArraysEqual(object1[key1[i]],object2[key1[i]])) {
-      console.log(object1[key1[i]], object2[key1[i]]);
-      return false;
+  for (const key in object1) {
+    if (!object2[key]) return false;
+    if (object1[key] instanceof Object && !Array.isArray(object1[key])) {
+      if (eqObjects(object1[key],object2[key])) {
+        return true;
+      }
     }
+    if (!eqArrays(object1[key], object2[key])) return false;
   }
+
+  return true;
+};
+
+const eqArrays = function(actual,expected) {
+  if (typeof actual !== typeof expected) {
+    return false;
+  }
+  if (actual === expected) return true;
+  // Only test array
+  if (actual.length === expected.length && actual instanceof Array) {
+
+    for (let i = 0; i < actual.length; i++) {
+      if (actual[i] !== expected[i]) return false;
+      //console.log(actual[i],expected[i]);
+      //console.log(`is they equal with same index? ${actual[i] === expected[i]}`);
+    }
+    return true;
+  }
+  if (actual !== expected) return false;
   return true;
 };
 
 
-
-// FUNCTION IMPLEMENTATION
-const assertEquals = function(actual,expected) {
-  if (typeof actual !== typeof expected) {
-
-    console.log(`🌚🌚🌚Assertion Failed Different Data Type: ${actual} !== ${expected}`);
-    return;
-  } else {
-
-    if (actual === expected) console.log(`🌝🌝🌝Assertion Passed: ${actual} === ${expected}`);
-
-    else console.log(`🌚🌚🌚Assertion Failed: ${actual} !== ${expected}`);
-
-  }
-};
 const assertArraysEqual = function(actual,expected) {
   if (typeof actual !== typeof expected) {
     return false;
-  } else {
-    if (actual === expected) return true;
-    if (actual.length === expected.length && actual instanceof Array) {
-      for (let i = 0; i < actual.length; i++) {
-        if (actual[i] !== expected[i]) {
-          return false;
-        }
-      }
-      return true;
-    } else {
-      return false;
-    }
   }
+  if (actual === expected) return true;
+  // Only test array
+  if (actual.length === expected.length && actual instanceof Array) {
+
+    for (let i = 0; i < actual.length; i++) {
+      if (actual[i] !== expected[i]) return false;
+      //console.log(actual[i],expected[i]);
+      //console.log(`is they equal with same index? ${actual[i] === expected[i]}`);
+    }
+    return true;
+  }
+  if (actual !== expected) return false;
+  return true;
 };
 
 // FUNCTION IMPLEMENTATION
 const assertObjectsEqual = function(actual,expected) {
   const inspect = require('util').inspect;
-  if (typeof (actual) !== typeof (expected)) {
-    console.log(`🛑🛑🛑 Assertion Failed: ${inspect(actual)} !== ${inspect(expected)}`);
-    return;
-  }
 
-  if (assertArraysEqual(actual,expected)) {
-    //console.log(`wrong part ?${assertArraysEqual(1,2)}`);
+  if (eqObjects(actual,expected)) {
     console.log(`✅✅✅ Assertion Passed: ${inspect(actual)} === ${inspect(expected)}`);
     return true;
   }
+  console.log(`🛑🛑🛑 Assertion Failed: ${inspect(actual)} !== ${inspect(expected)}`);
+  return false;
 
-  if (actual instanceof Array) {
-    console.log(`🛑🛑🛑 Assertion Failed: ${inspect(actual)} !== ${inspect(expected)}`);
-    return;
-
-  } else if (actual instanceof Object) {
-    if (eqObjects(actual,expected)) {
-      console.log(`✅✅✅ Assertion Passed: ${inspect(actual)} === ${inspect(expected)}`);
-      return;
-    } else {
-      console.log(`🛑🛑🛑 Assertion Failed: ${inspect(actual)} !== ${inspect(expected)}`);
-      return;
-    }
-  } else {
-    console.log(`🛑🛑🛑 Assertion Failed: ${inspect(actual)} !== ${inspect(expected)}`);
-    return;
-  }
 };
 
 const shirtObject = { color: "red", size: "medium" };
@@ -98,7 +85,7 @@ const anotherMultiColorShirtObject = { size: "medium", colors: ["red", "blue"] }
 //console.log(eqObjects(1,2));
 assertObjectsEqual(shirtObject , longSleeveShirtObject); // => false
 assertObjectsEqual(shirtObject , anotherShirtObject); // => true
-assertObjectsEqual(multiColorShirtObject  , anotherMultiColorShirtObject);
+assertObjectsEqual(multiColorShirtObject  , anotherMultiColorShirtObject); //true
 assertObjectsEqual(multiColorShirtObject  , longSleeveMultiColorShirtObject); // => false
 assertObjectsEqual(undefined,undefined);
 assertObjectsEqual(1,2);
