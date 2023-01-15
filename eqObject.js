@@ -1,21 +1,6 @@
 
 // Returns true if both objects have identical keys with identical values.
 // Otherwise you get back a big fat false!
-//const eqObjects = function(object1,object2) {
-//  const key1 = Object.keys(object1);
-//  const key2 = Object.keys(object2);
-//  if (key1.length !== key2.length) return false;
-
-//  for (let i = 0; i < key1.length; i++) {
-//    if (!key2.includes(key1[i])) {
-//      return false;
-//    } else if (object1[key1[i]] !== object2[key1[i]] && !assertArraysEqual(object1[key1[i]],object2[key1[i]])) {
-//      console.log(object1[key1[i]], object2[key1[i]]);
-//      return false;
-//    }
-//  }
-//  return true;
-//};
 
 const eqObjects = (object1, object2) => {
   const key1 = Object.keys(object1);
@@ -30,7 +15,6 @@ const eqObjects = (object1, object2) => {
     }
     if (!eqArrays(object1[key], object2[key])) return false;
   }
-
   return true;
 };
 
