@@ -1,7 +1,10 @@
-
 // Returns true if both objects have identical keys with identical values.
 // Otherwise you get back a big fat false!
-const eqObjects = (object1, object2) => {
+
+const eqObjects = (object1,object2) => {
+  if (typeof object1 !== typeof object2) return false;
+
+  if (!(object1 instanceof Object)) return object1 === object2;
   const key1 = Object.keys(object1);
   const key2 = Object.keys(object2);
   if (key1.length !== key2.length) return false;
@@ -18,22 +21,23 @@ const eqObjects = (object1, object2) => {
   return true;
 };
 
-const eqArrays = function(actual,expected) {
-  if (typeof actual !== typeof expected) {
-    return false;
-  }
-  if (actual === expected) return true;
-  // Only test array
-  if (actual.length === expected.length && actual instanceof Array) {
 
+const eqArrays = function(actual,expected) {
+  if (typeof actual !== typeof expected) return false;
+
+  if (typeof actual !== 'object') return actual === expected;
+  // Only test array
+  if (Array.isArray(actual)) {
+    if (actual.length !== expected.length) return false;
     for (let i = 0; i < actual.length; i++) {
-      if (actual[i] !== expected[i]) return false;
-      //console.log(actual[i],expected[i]);
-      //console.log(`is they equal with same index? ${actual[i] === expected[i]}`);
+
+      console.log(actual[i],expected[i]);
+
+      console.log(`is they equal with same index? ${actual[i] === expected[i]}`);
+
+      if (!eqArrays(actual[i], expected[i])) return false;
     }
-    return true;
   }
-  if (actual !== expected) return false;
   return true;
 };
 
@@ -87,7 +91,7 @@ assertObjectsEqual(shirtObject , longSleeveShirtObject); // => false
 assertObjectsEqual(shirtObject , anotherShirtObject); // => true
 assertObjectsEqual(multiColorShirtObject  , anotherMultiColorShirtObject); //true
 assertObjectsEqual(multiColorShirtObject  , longSleeveMultiColorShirtObject); // => false
-assertObjectsEqual(undefined,undefined);
+assertObjectsEqual(undefined, undefined);
 assertObjectsEqual(1,2);
 assertObjectsEqual(null, null);
 assertObjectsEqual(null, undefined);

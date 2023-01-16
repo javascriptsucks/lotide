@@ -1,19 +1,20 @@
-const eqArrays = function(actual,expected) {
-  if (typeof actual !== typeof expected) {
-    return false;
-  }
-  if (actual === expected) return true;
-  // Only test array
-  if (actual.length === expected.length && actual instanceof Array) {
 
+const eqArrays = function(actual,expected) {
+  if (typeof actual !== typeof expected) return false;
+
+  if (typeof actual !== 'object') return actual === expected;
+  // Only test array
+  if (Array.isArray(actual)) {
+    if (actual.length !== expected.length) return false;
     for (let i = 0; i < actual.length; i++) {
-      if (actual[i] !== expected[i]) return false;
-      //console.log(actual[i],expected[i]);
-      //console.log(`is they equal with same index? ${actual[i] === expected[i]}`);
+
+      console.log(actual[i],expected[i]);
+
+      console.log(`is they equal with same index? ${actual[i] === expected[i]}`);
+
+      if (!eqArrays(actual[i], expected[i])) return false;
     }
-    return true;
   }
-  if (actual !== expected) return false;
   return true;
 };
 
