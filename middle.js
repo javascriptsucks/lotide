@@ -1,4 +1,5 @@
-const middle = (arr)=> {
+const assertArraysEqual = require('./assertArraysEqual');
+const middle = (arr) => {
   if (arr.length <= 2) {
     return [];
   }
@@ -10,32 +11,6 @@ const middle = (arr)=> {
   }
 };
 
-
-const assertArraysEqual = function(actual,expected) {
-  if (typeof actual !== typeof expected) {
-
-    console.log(`🌚🌚🌚Assertion Failed Different Data Type: ${actual} !== ${expected}`);
-    return;
-  } else {
-    if (actual.length === expected.length && actual instanceof Array) {
-      for (let i = 0; i < actual.length; i++) {
-        if (actual[i] !== expected[i]) {
-          console.log(`🌚🌚🌚Assertion Failed: ${actual} !== ${expected}`);
-          return;
-        }
-      }
-      console.log(`🌝🌝🌝Assertion Passed: ${actual} === ${expected}`);
-      return true;
-    } else if (actual === expected) {
-      console.log(`🌝🌝🌝Assertion Passed: ${actual} === ${expected}`);
-
-    } else {
-      console.log(`🌚🌚🌚Assertion Failed: ${actual} !== ${expected}`);
-
-    }
-
-  }
-};
 
 console.log(middle([1]));
 console.log(middle([1, 2]));
@@ -51,3 +26,4 @@ assertArraysEqual(middle([1, 2, 3, 4, 5]),[3]);
 assertArraysEqual(middle([1, 2, 3, 4]),[2, 3]);
 assertArraysEqual(middle([1, 2, 3, 4, 5, 6]),[3, 4]);
 
+module.exports = middle
