@@ -22,7 +22,5 @@ const without = require('./without');
 
 
 module.exports = {
-  head:   head,
-  tail:   tail,
-  middle: middle, assertArraysEqual, assertEqual, assertObjectsEqual, countLetters, eqArrays, eqObject, findKey,findKeyByValue,flatten,letterPositions,loopyLighthouse, map, pigLatin, reverse, countOnly, takeUntile, without
+  head, tail, middle: middle, assertArraysEqual, assertEqual, assertObjectsEqual, countLetters, eqArrays, eqObject, findKey,findKeyByValue,flatten,letterPositions,loopyLighthouse, map, pigLatin, reverse, countOnly, takeUntile, without
 };
