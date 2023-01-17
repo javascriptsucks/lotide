@@ -19,8 +19,9 @@ const pigLatin = require('./pig-latin');
 const reverse = require('./reverse');
 const takeUntile = require('./takeUntil');
 const without = require('./without');
+const deepclone = require('./deepclone');
 
 
 module.exports = {
-  head, tail, middle: middle, assertArraysEqual, assertEqual, assertObjectsEqual, countLetters, eqArrays, eqObject, findKey,findKeyByValue,flatten,letterPositions,loopyLighthouse, map, pigLatin, reverse, countOnly, takeUntile, without
+  head, tail, middle: middle, assertArraysEqual, assertEqual, assertObjectsEqual, countLetters, eqArrays, eqObject, findKey,findKeyByValue,flatten,letterPositions,loopyLighthouse, map, pigLatin, reverse, countOnly, takeUntile, without, deepclone
 };

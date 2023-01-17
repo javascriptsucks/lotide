@@ -2,8 +2,8 @@
   "dependencies": {
     "chalk": "^4.1.2"
   },
-  "name": "lotide",
-  "description": "Punch of functions",
+  "name": "@changli/lotide",
+  "description": "Punch of handy functions",
   "version": "1.0.0",
   "main": "index.js",
   "directories": {
