@@ -13,3 +13,5 @@ const pigLatin = (arr) => {
 
 
 pigLatin(args);
+
+module.exports = pigLatin

@@ -13,30 +13,7 @@ const findKey = function(obj,cb) {
   }
 };
 
-
-const result = findKey({
-  "Blue Hill": { stars: 1 },
-  "Akaleri":   { stars: 3 },
-  "noma":      { stars: 2 },
-  "elBulli":   { stars: 3 },
-  "Ora":       { stars: 2 },
-  "Akelarre":  { stars: 3 }
-}, x => x.stars === 2); // => "noma"
-
-const assertEqual = function(actual,expected) {
-  if (typeof actual !== typeof expected) {
-
-    console.log(`🌚🌚🌚Assertion Failed Different Data Type: ${actual} !== ${expected}`);
-    return;
-  } else {
-
-    if (actual === expected) console.log(`🌝🌝🌝Assertion Passed: ${actual} === ${expected}`);
-
-    else console.log(`🌚🌚🌚Assertion Failed: ${actual} !== ${expected}`);
-
-  }
-};
-assertEqual(result,'noma');
+module.exports = findKey;
 
 
 

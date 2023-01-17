@@ -11,3 +11,5 @@ const reverse = (arr) => {
 };
 
 reverse(args);
+
+module.exports = reverse;
